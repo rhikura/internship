@@ -1,37 +1,31 @@
-import { useEffect, useState } from "react";
+import useApi from "./hooks/useApi";
 
 function App() {
 
-  const [rows,setRows] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [rows, loading, error] = useApi("todo")
+  const [{health}] = useApi("health")
 
-  let fetchData = async () => {
-    try{
-      let response = await fetch(process.env.REACT_APP_API_URL+"/todo")
-      let data = await response.json()
-      setRows(data)
-    }catch(e){
-      setError(e)
-    }finally{
-      setLoading(false)
+  let getServerHealthStatus = () => {
+    if(health !== "OK"){
+      return <span style={{color: "red"}}>Not Ok</span>
     }
+    return <span style={{color: "green"}}>Ok</span>
   }
-
-  useEffect(()=>{
-    fetchData()
-  }, [])
 
   if(loading){
     return <p>Loading ... </p>
   }
 
   return (
-    <ul>
-      {rows.map(row=>{
-        return <li key={row.id}>{row.id} {row.title}</li>
-      })}
-    </ul>
+    <div>
+      <h1>Hello I'm a {process.env.REACT_APP_IP} frontend server</h1>
+      <h2>API Status: {getServerHealthStatus()}</h2>
+      <ul>
+        {rows.map(row=>{
+          return <li key={row.id}>{row.id} {row.title}</li>
+        })}
+      </ul>
+    </div>
   );
 }
 
