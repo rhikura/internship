@@ -1,0 +1,12 @@
+.container{
+    border: 1px solid;
+    margin: auto;
+    box-sizing: content-box;
+    padding: 10px;
+    align-items: center;
+    text-align: center;
+    font-family: monospace;
+    box-shadow: 1px 1px 3px grey;
+    width: 50%;
+    font-size: 1.5rem;
+}

@@ -7,9 +7,9 @@ function App() {
 
   let getServerHealthStatus = () => {
     if(health !== "OK"){
-      return <span style={{color: "red"}}>Not Ok</span>
+      return <span style={{color: "red"}}>Disconnected</span>
     }
-    return <span style={{color: "green"}}>Ok</span>
+    return <span style={{color: "green"}}>Connected</span>
   }
 
   if(loading){
@@ -17,14 +17,15 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>Hello I'm a {process.env.REACT_APP_IP} frontend server</h1>
-      <h2>API Status: {getServerHealthStatus()}</h2>
+    <div className="container">
+      <h3>Hello I'm a {process.env.REACT_APP_IP} frontend server</h3>
+      <h4>API Status: {getServerHealthStatus()}</h4>
       <ul>
         {rows.map(row=>{
           return <li key={row.id}>{row.id} {row.title}</li>
         })}
       </ul>
+      <span color="gray">Version: 0.0.1</span>
     </div>
   );
 }
