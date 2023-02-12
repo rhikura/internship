@@ -2,14 +2,14 @@ import useApi from "./hooks/useApi";
 
 function App() {
 
-  const [rows, loading, error] = useApi("todo")
+  const [rows, loading, error, response] = useApi("todo")
   const [{health}] = useApi("health")
 
   let getServerHealthStatus = () => {
     if(health !== "OK"){
       return <span style={{color: "red"}}>Disconnected</span>
     }
-    return <span style={{color: "green"}}>Connected</span>
+    return <span style={{color: "green"}}>Connected to {response.headers.get('backend-ip')}</span>
   }
 
   if(loading){
