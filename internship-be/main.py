@@ -7,7 +7,7 @@ CORS(app)
 
 @app.route("/health")
 def hello_world():
-    return jsonify(health="OK")
+    return jsonify(health="OK", version=2)
 
 @app.route("/todo")
 def get_todo():

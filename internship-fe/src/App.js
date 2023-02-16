@@ -25,7 +25,7 @@ function App() {
           return <li key={row.id}>{row.id} {row.title}</li>
         })}
       </ul>
-      <span color="gray">Version: 0.0.1</span>
+      <span color="gray">Version: 0.0.2</span>
     </div>
   );
 }
